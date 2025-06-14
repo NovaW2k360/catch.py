@@ -5,6 +5,20 @@
 
 import pygame, simpleGE, random
 
+class Cat(simpleGE.Sprite):
+    def __init__(self, scene):
+        super().__init__(scene)
+        self.setImage("cat.png")
+        self.setSize(50, 50)
+        self.position = (320, 400)
+        self.moveSpeed = 8
+        
+    def process(self):
+        if self.isKeyPressed(pygame.K_LEFT):
+            self.x -= self.moveSpeed
+        if self.isKeyPressed(pygame.K_RIGHT):
+            self.x += self.moveSpeed
+
 class Fish(simpleGE.Sprite):
     def __init__(self, scene):
         super().__init__(scene)
@@ -22,21 +36,6 @@ class Fish(simpleGE.Sprite):
     def checkBounds(self):
         if self.bottom > self.screenHeight:
             self.reset()
-
-
-class Cat(simpleGE.Sprite):
-    def __init__(self, scene):
-        super().__init__(scene)
-        self.setImage("cat.png")
-        self.setSize(50, 50)
-        self.position = (320, 400)
-        self.moveSpeed = 8
-        
-    def process(self):
-        if self.isKeyPressed(pygame.K_LEFT):
-            self.x -= self.moveSpeed
-        if self.isKeyPressed(pygame.K_RIGHT):
-            self.x += self.moveSpeed
             
 class LblScore(simpleGE.Label):
     def __init__(self):
